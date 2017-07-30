@@ -3,7 +3,6 @@ A mini-library to turn math functions to audio waveforms.
 TODO
 ====
 
-* create setup.py
 * add an EvenPeriodicSignal class for even functions
   * document the "advantage" or desirability of ensuring `f'(-1) == f'(+1) == 0`
 * create some more examples of interesting waveforms
@@ -38,8 +37,6 @@ TODO
   * Allow `PeriodicSignal` subclasses to register themselves as commands
    (provided they have overridden the appropriate method)
 * add a feature to graph the waveforms!
-* add an argument or envvar that imports a user library and adds its commands?
-  * alt: document how to create your own command.
 * Document:
   * how to create your own waveforms
   * when to use general periodic functions vs odd vs even

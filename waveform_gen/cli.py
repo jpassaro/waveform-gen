@@ -1,4 +1,5 @@
 import functools
+import os
 import os.path
 
 import click
@@ -7,6 +8,12 @@ from .base import PeriodicSignal, OddPeriodicSignal
 
 @click.group()
 def cli():
+    """Script to generate sound files from waveforms.
+
+    By default a set of builtin waveforms are made available from the module
+    waveform_gen.examples. If you wish to override that, export the environment
+    variable WFGEN_IMPORT; its contents will be passed to ``__import__``.
+    """
     pass
 
 
@@ -58,3 +65,12 @@ def make_command(f, odd=True):
         gen.to_audio_segment(duration=duration, volume=volume).export(
             click.open_file(out, 'wb+'), format=fmt, parameters=ffmpeg_params)
         click.echo('wrote sample to %s' % out)
+
+
+def main(use_examples=None):
+    __import__(os.getenv('WFGEN_IMPORT', 'waveform_gen.examples'))
+    return cli.main()
+
+
+if __name__ == '__main__':
+    main()
